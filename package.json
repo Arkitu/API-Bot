@@ -13,7 +13,7 @@
   "scripts": {
     "start": "forever build/index.js",
     "dev": "tsc && npx tsc -w > /dev/null & npx nodemon build/index.js",
-    "build": "tsc",
+    "build": "rm -r build/ && tsc",
     "deploy_cmds": "tsc && node build/deploy_cmds.js"
   },
   "author": "Arkitu",
