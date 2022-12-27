@@ -11,7 +11,7 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "forever build/index.js",
     "dev": "tsc && npx tsc -w > /dev/null & npx nodemon build/index.js",
     "build": "tsc",
     "deploy_cmds": "tsc && node build/deploy_cmds.js"
