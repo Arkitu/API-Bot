@@ -65,7 +65,7 @@ const command: SubcommandFile = {
       markdownPrefix = path.split(".").pop() + "\n";
     }
 
-    if (fileContent.length > 1900) {
+    if (fileContent.length > 1850) {
       cmd.editReply(":warning: The file is too long to be displayed");
       return;
     }
