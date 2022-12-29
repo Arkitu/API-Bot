@@ -1,8 +1,9 @@
 # API Bot
 ## API implémentées
 - FOAAS
-## API à implémenter
 - Placekitten API
+## API à implémenter
 - Spotify API
 - NASA API
 - Google Translate API
+- Github API

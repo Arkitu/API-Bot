@@ -3,6 +3,8 @@ import consoleStamp from "console-stamp";
 import getCommands from "./lib/get_commands.js";
 import loadConfigAndConstants from "./lib/load_config_and_constants.js";
 import { Command, CommandGroup, CommandRunnable, Subcommand, SubcommandGroup } from "./types/command.js";
+import { Octokit } from "octokit";
+import getListeners from "./lib/get_listeners.js";
 
 consoleStamp(console);
 
@@ -43,6 +45,12 @@ getCommands().then(commands => {
     
     cmd.run(interaction);
   });
+});
+
+getListeners().then(listeners => {
+  for (const listener of listeners) {
+    client.on(listener.type, listener.run);
+  }
 });
 
 client.on(Events.ClientReady, () => {
