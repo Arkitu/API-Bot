@@ -14,6 +14,7 @@ const command: CommandFile = {
         .setDescriptionLocalization("fr", "La largeur de l'image (défaut: 500)")
         .setRequired(false)
         .setMaxValue(6976)
+        .setMinValue(1)
     )
     .addIntegerOption(opt=>
       opt.setName("height")
@@ -22,6 +23,7 @@ const command: CommandFile = {
         .setDescriptionLocalization("fr", "La hauteur de l'image (défaut: 500)")
         .setRequired(false)
         .setMaxValue(6976)
+        .setMinValue(1)
     ),
   run: (cmd) => {
     cmd.reply(`https://placekitten.com/${cmd.options.getInteger("width") || 500}/${cmd.options.getInteger("height") || 500}`);
