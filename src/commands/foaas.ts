@@ -10,16 +10,20 @@ const command: CommandFile = {
   admin: false,
   data: new SlashCommandBuilder()
     .setName("foaas")
-    .setDescription("Fuck Off As A Service API")
+    .setDescription("Fuck Off As A Service API (https://foass.1001010.com)")
+    .setDescriptionLocalization("fr", "L'API de Fuck Off As A Service (https://foass.1001010.com)")
     .addStringOption(opt=>
       opt.setName("type")
         .setDescription("The type of insult (default: \"off\") (see https://foass.1001010.com)")
+        .setDescriptionLocalization("fr", "Le type d'insulte (défaut: \"off\") (voir https://foass.1001010.com)")
         .setRequired(false)
         .addChoices(...typesWithTo.concat(typesWithoutTo).map(type=>{ return { name: type, value: type }}))
     )
     .addUserOption(opt=>
       opt.setName("to")
+        .setNameLocalization("fr", "à")
         .setDescription("The person that you want to insult (default: \"you\")")
+        .setDescriptionLocalization("fr", "La personne que vous voulez insulter (défaut: \"you\")")
         .setRequired(false)
     ),
   run: async (cmd) => {
