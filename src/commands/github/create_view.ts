@@ -1,6 +1,48 @@
 import { SubcommandFile } from "../../types/command";
 import axios from "axios";
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
+import { ActionRowBuilder, ButtonBuilder, ButtonInteraction, ButtonStyle, ChatInputCommandInteraction } from "discord.js";
+
+export async function showFile(interaction: ChatInputCommandInteraction | ButtonInteraction, url: string) {
+  let fileContent: string;
+    try {
+      fileContent = (await axios.get(url)).data;
+    } catch (e) {
+      interaction.editReply(":warning: Error while fetching the file");
+      return;
+    }
+
+    let markdownPrefix = "";
+
+    if (constants.getData("/markdownSupportedColoration").includes(url.split(".").pop())) {
+      markdownPrefix = url.split(".").pop() + "\n";
+    }
+
+    if (fileContent.length > 1850) {
+      interaction.editReply(":warning: The file is too long to be displayed");
+      return;
+    }
+
+    const message: {
+      content: string,
+      components?: any[]
+    } = {
+      content: "Content of the file at " + url + "\n```" + markdownPrefix + fileContent + "```"
+    };
+
+    if (interaction.isCommand()) {
+      message.components = [
+        new ActionRowBuilder()
+          .addComponents(
+            new ButtonBuilder()
+              .setCustomId("github:create_view:refresh")
+              .setLabel("Refresh")
+              .setStyle(ButtonStyle.Primary)
+          )
+      ]
+    }
+
+    await interaction.editReply(message);
+}
 
 const command: SubcommandFile = {
   data: (subcommandGroup)=>subcommandGroup
@@ -51,37 +93,7 @@ const command: SubcommandFile = {
 
     const url = `https://raw.githubusercontent.com/${opts.repo_owner}/${opts.repo_name}/${opts.branch}/${path}`;
 
-    let fileContent: string;
-    try {
-      fileContent = (await axios.get(url)).data;
-    } catch (e) {
-      cmd.editReply(":warning: Error while fetching the file");
-      return;
-    }
-
-    let markdownPrefix = "";
-
-    if (constants.getData("/markdownSupportedColoration").includes(path.split(".").pop())) {
-      markdownPrefix = path.split(".").pop() + "\n";
-    }
-
-    if (fileContent.length > 1850) {
-      cmd.editReply(":warning: The file is too long to be displayed");
-      return;
-    }
-
-    await cmd.editReply({
-      content: "Content of the file at " + url + "\n```" + markdownPrefix + fileContent + "```",
-      components: [
-        new ActionRowBuilder()
-          .addComponents(
-            new ButtonBuilder()
-              .setCustomId("github:create_view:refresh")
-              .setLabel("Refresh")
-              .setStyle(ButtonStyle.Primary)
-          )
-      ]
-    })
+    await showFile(cmd, url);
   }
 }
 
