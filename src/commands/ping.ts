@@ -2,7 +2,7 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandFile } from "../types/command";
 
 const command: CommandFile = {
-  admin: true,
+  admin: false,
   data: new SlashCommandBuilder()
     .setName("ping")
     .setDescription("Replies with Pong!")
