@@ -59,8 +59,14 @@ const command: SubcommandFile = {
       return;
     }
 
+    let markdownPrefix = "";
+
+    if (constants.getData("/markdownSupportedColoration").includes(path.split(".").pop())) {
+      markdownPrefix = path.split(".").pop() + "\n";
+    }
+
     await cmd.editReply({
-      content: "Content of the file at " + url + "\n```" + fileContent + "```",
+      content: "Content of the file at " + url + "\n```" + markdownPrefix + fileContent + "```",
       components: [
         new ActionRowBuilder()
           .addComponents(
