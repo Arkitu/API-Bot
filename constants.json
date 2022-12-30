@@ -171,6 +171,7 @@
     "zenscript", "zs", "zephir", "zep"
   ],
   "colors": {
-    "nasa": "#061f4a"
+    "nasa": "#061f4a",
+    "trefle": "#007300"
   }
 }

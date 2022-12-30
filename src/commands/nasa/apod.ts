@@ -1,17 +1,9 @@
-import { EmbedBuilder, RGBTuple } from "@discordjs/builders";
+import { EmbedBuilder } from "@discordjs/builders";
 import axios from "axios";
 import { existsSync } from "fs";
 import { readFile, writeFile } from "fs/promises";
 import { SubcommandFile } from "../../types/command";
-
-function hexToRgb(hex: string) {
-  var bigint = parseInt(hex, 16);
-  var r = (bigint >> 16) & 255;
-  var g = (bigint >> 8) & 255;
-  var b = bigint & 255;
-
-  return [r, g, b] as RGBTuple;
-}
+import hexToRgb from "../../lib/hexToRgb.js";
 
 const command: SubcommandFile = {
   data: (subcommandGroup)=>subcommandGroup
@@ -40,7 +32,6 @@ const command: SubcommandFile = {
       try {
         console.debug(url)
         const fetched = (await axios.get(url)).data;
-        console.debug(typeof fetched)
         console.log("Caching apod data for date " + date)
         await writeFile(cachePath, JSON.stringify(fetched));
       } catch (err) {
@@ -65,7 +56,7 @@ const command: SubcommandFile = {
       .setDescription(data.explanation)
       .setImage(data.url)
       .setFooter({ text: "Date : " + data.date, iconURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/1200px-NASA_logo.svg.png" })
-      .setColor(hexToRgb((constants.getData("/colors/nasa") as string).slice(1)));
+      .setColor(hexToRgb(constants.getData("/colors/nasa")));
     await cmd.editReply({ embeds: [embed] })
   }
 }
