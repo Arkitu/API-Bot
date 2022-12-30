@@ -169,5 +169,8 @@
     "xquery", "xpath", "xq",
     "yml", "yaml",
     "zenscript", "zs", "zephir", "zep"
-  ]
+  ],
+  "colors": {
+    "nasa": "#061f4a"
+  }
 }

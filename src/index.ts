@@ -56,4 +56,4 @@ client.on(Events.ClientReady, () => {
   console.log("Bot is ready!")
 });
 
-client.login(config.getData("/token") as string);
+client.login(config.getData("/apiKeys/discord") as string);

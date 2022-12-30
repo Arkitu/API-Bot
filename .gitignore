@@ -1,6 +1,5 @@
 /node_modules/
-/build/
-/temp/
+build/*
+cache/*/*
 /config.json
-/db.sqlite
 /package-lock.json

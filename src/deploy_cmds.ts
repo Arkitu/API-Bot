@@ -11,7 +11,7 @@ console.log("Commands: ", commands);
 loadConfigAndConstants();
 
 // Construct and prepare an instance of the REST module
-const rest = new REST({ version: '10' }).setToken(config.getData("/token") as string);
+const rest = new REST({ version: '10' }).setToken(config.getData("/apiKeys/discord") as string);
 
 console.log(`Started refreshing application (/) commands.`);
 
