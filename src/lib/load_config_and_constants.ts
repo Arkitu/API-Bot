@@ -5,6 +5,7 @@ const configModel = {
     discord: "abc",
     rapidApi: "abc",
     nasa: "abc",
+    trefle: "abc"
   },
   appId: "abc",
   adminServerId: "abc",
