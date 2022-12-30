@@ -4,6 +4,7 @@ import getCommands from "./lib/get_commands.js";
 import loadConfigAndConstants from "./lib/load_config_and_constants.js";
 import { Command, CommandGroup, CommandRunnable, Subcommand, SubcommandGroup } from "./types/command.js";
 import getListeners from "./lib/get_listeners.js";
+import createCacheDir from "./lib/createCacheDir.js";
 
 consoleStamp(console);
 
@@ -14,6 +15,8 @@ var client = new Client({
 });
 
 loadConfigAndConstants()
+
+createCacheDir()
 
 getCommands().then(commands => {
   client.on(Events.InteractionCreate, async interaction => {
