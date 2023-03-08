@@ -1,4 +1,4 @@
-import { SlashCommandSubcommandBuilder, SlashCommandSubcommandGroupBuilder } from "discord.js";
+import { ChatInputCommandInteraction, SlashCommandSubcommandBuilder, SlashCommandSubcommandGroupBuilder } from "discord.js";
 
 type CommandRun = (cmd: ChatInputCommandInteraction) => void;
 

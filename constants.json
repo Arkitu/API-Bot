@@ -173,5 +173,9 @@
   "colors": {
     "nasa": "#061f4a",
     "trefle": "#007300"
+  },
+  "videoPannel": {
+    "defaultWidth": 500,
+    "defaultHeight": 100
   }
 }

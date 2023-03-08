@@ -5,10 +5,10 @@ import consoleStamp from "console-stamp";
 
 consoleStamp(console);
 
+loadConfigAndConstants();
+
 let commands = await getCommands();
 console.log("Commands: ", commands);
-
-loadConfigAndConstants();
 
 // Construct and prepare an instance of the REST module
 const rest = new REST({ version: '10' }).setToken(config.getData("/apiKeys/discord") as string);

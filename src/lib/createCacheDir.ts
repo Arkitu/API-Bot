@@ -5,7 +5,12 @@ const cacheModel = [
   "nasa:apod",
   "trefle",
   "trefle/search",
-  "trefle/images"
+  "trefle/images",
+  "video",
+  "video/pannel",
+  "video/pannel/videos",
+  "video/pannel/frames",
+  "video/pannel/images",
 ];
 
 export default async function createCacheDir() {

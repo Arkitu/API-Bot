@@ -29,7 +29,7 @@ const command: CommandFile = {
   run: async (cmd) => {
     await cmd.deferReply();
     const opts = {
-      to: cmd.options.getUser("to") || "you",
+      to: cmd.options.getUser("to") || {username:"you"},
       type: cmd.options.getString("type") || "off"
     };
     let url = "";

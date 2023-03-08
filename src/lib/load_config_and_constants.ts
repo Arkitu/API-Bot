@@ -3,7 +3,6 @@ import { JsonDB } from "node-json-db";
 const configModel = {
   apiKeys: {
     discord: "abc",
-    rapidApi: "abc",
     nasa: "abc",
     trefle: "abc"
   },
